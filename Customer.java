@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.LinkedList;
+
 class Customer{
 
     private String CustomerId;
