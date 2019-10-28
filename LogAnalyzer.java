@@ -210,7 +210,7 @@ public class LogAnalyzer
             }
             double averagePrice = totalPrice / views.size();
             for (Buy buy: buys) {
-                System.out.println("    " + view.getProductId() + " " + buy.getPrice() - averagePrice);
+                System.out.println("    " + buy.getProductId() + " " + buy.getPrice() - averagePrice);
             }
             totalPrice = 0;
         }
