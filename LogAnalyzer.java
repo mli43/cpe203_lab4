@@ -158,7 +158,7 @@ public class LogAnalyzer
     {
         int totalViews = 0;
         int totalNoPurchaseSessions = 0;
-        List<String> customerList = new LinkList<String>();
+        List<String> customerList = new LinkedList<String>();
 
         for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet())
         {
@@ -290,7 +290,7 @@ public class LogAnalyzer
     {
         while (input.hasNextLine())
         {
-            processLine(input.nextLine(), sessionsFromCustomer, sessionsFromCustomer, viewsFromSession, buysFromSession
+            processLine(input.nextLine(), sessionsFromCustomer, viewsFromSession, buysFromSession
                     /* add arguments as needed */ );
         }
     }
