@@ -1,3 +1,4 @@
+//merge test
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -89,7 +90,7 @@ public class LogAnalyzer
    private static void processBuyEntry(final String[] words,
       final Map<String, List<Buy>> buysFromSession)
       /* add parameters as needed */
-      )
+      
    {
    }
 
@@ -135,15 +136,19 @@ public class LogAnalyzer
       }
    }
 
-   private static void AvgViewsNoPurchase()
+   private static void AvgViewsNoPurchase(
+      final Map<String, List<String>> sessionsFromCustomer,
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession)
    {
-      System.out.println("Average Views Without Purchase: ")
+      System.out.println("Average Views Without Purchase: ");
    }
+
       //write this after you have figured out how to store your data
       //make sure that you understand the problem
    private static void printSessionPriceDifference(
-      /* add parameters as needed */
-      )
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession)      
    {
       System.out.println("Price Difference for Purchased Product by Session");
 
@@ -153,8 +158,9 @@ public class LogAnalyzer
       //write this after you have figured out how to store your data
       //make sure that you understand the problem
    private static void printCustomerItemViewsForPurchase(
-      /* add parameters as needed */
-      )
+      final Map<String, List<String>> sessionsFromCustomer,
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession)
    {
       System.out.println("Number of Views for Purchased Product by Customer");
 
@@ -166,13 +172,11 @@ public class LogAnalyzer
    private static void printStatistics(
       final Map<String, List<String>> sessionsFromCustomer,
       final Map<String, List<View>> viewsFromSession,
-      final Map<String, List<Buy>> buysFromSession
-
-      /* add parameters as needed */
-      )
+      final Map<String, List<Buy>> buysFromSession)
    {
-      printSessionPriceDifference( /*add arguments as needed */);
-      printCustomerItemViewsForPurchase( /*add arguments as needed */);
+      AvgViewsNoPurchase(sessionsFromCustomer, viewsFromSession, buysFromSession);
+      printSessionPriceDifference(viewsFromSession, buysFromSession);
+      printCustomerItemViewsForPurchase(sessionsFromCustomer, viewsFromSession, buysFromSession);
 
       /* This is commented out as it will not work until you read
          in your data to appropriate data structures, but is included
