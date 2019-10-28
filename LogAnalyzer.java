@@ -163,22 +163,23 @@ public class LogAnalyzer
         for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet())
         {
             customerList.add(entry.getKey());
-        }
+        
 
-        for(String sessionId : customerList)
-        {
-            List<Buy> buys = buysFromSession.get(sessionId);
-            if (buys == null) //if no purchase
+            for(String sessionId : customerList)
             {
-                totalNoPurchaseSessions ++;
-                List<View> views = viewsFromSession.get(sessionId);
-                if (views != null) //if viewed
+                List<Buy> buys = buysFromSession.get(sessionId);
+                if (buys == null) //if no purchase
                 {
-                    totalViews += views.size();
+                    totalNoPurchaseSessions ++;
+                    List<View> views = viewsFromSession.get(sessionId);
+                    if (views != null) //if viewed
+                    {
+                        totalViews += views.size();
+                    }
                 }
+               
             }
         }
-
         double result = totalViews/totalNoPurchaseSessions;
         System.out.println("Average Views Without Purchase: " + result);
         System.out.println();
