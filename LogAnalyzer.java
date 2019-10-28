@@ -109,39 +109,6 @@ public class LogAnalyzer
         buys.add(new Buy(productId, productPrice, quantity));
     }
 
-   private static void AvgViewsNoPurchase(
-      final Map<String, List<String>> sessionsFromCustomer,
-      final Map<String, List<View>> viewsFromSession,
-      final Map<String, List<Buy>> buysFromSession)
-   {
-      int totalViews = 0;
-      int totalNoPurchaseSessions = 0;
-      List<String> customerList = new LinkList<String>();
-
-      for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet()) 
-      {
-         customerList.add(entry.getKey());
-      }
-
-      for(String sessionId : customerList)
-      {
-         List<Buy> buys = buysFromSession.get(sessionId);
-         if (buys == null) //if no purchase
-            {   
-               totalNoPurchaseSessions ++;
-               List<View> views = viewsFromSession.get(sessionId);
-               if (views != null) //if viewed
-               {
-                  totalViews += views.size();
-               }
-         }
-      }
-
-      
-      double result = totalViews/totalNoPurchaseSessions;
-      System.out.println("Average Views Without Purchase: " + result);
-      System.out.println();
-   }
     private static void processEndEntry(final String[] words)
     {
         if (words.length != END_NUM_FIELDS)
@@ -161,27 +128,6 @@ public class LogAnalyzer
     )
     {
         final String[] words = line.split("\\h");
-
-
-      /* add printing */
-   }
-
-      //write this after you have figured out how to store your data
-      //make sure that you understand the problem
-   private static void printCustomerItemViewsForPurchase(
-      final Map<String, List<String>> sessionsFromCustomer,
-      final Map<String, List<View>> viewsFromSession,
-      final Map<String, List<Buy>> buysFromSession)
-   {
-
-      System.out.println("Number of Views for Purchased Product by Customer");
-
-      
-
-
-   
-      /* add printing */
-   }
         if (words.length == 0)
         {
             return;
@@ -204,12 +150,38 @@ public class LogAnalyzer
         }
     }
 
+
     private static void AvgViewsNoPurchase(
             final Map<String, List<String>> sessionsFromCustomer,
             final Map<String, List<View>> viewsFromSession,
             final Map<String, List<Buy>> buysFromSession)
     {
-        System.out.println("Average Views Without Purchase: ");
+        int totalViews = 0;
+        int totalNoPurchaseSessions = 0;
+        List<String> customerList = new LinkList<String>();
+
+        for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet())
+        {
+            customerList.add(entry.getKey());
+        }
+
+        for(String sessionId : customerList)
+        {
+            List<Buy> buys = buysFromSession.get(sessionId);
+            if (buys == null) //if no purchase
+            {
+                totalNoPurchaseSessions ++;
+                List<View> views = viewsFromSession.get(sessionId);
+                if (views != null) //if viewed
+                {
+                    totalViews += views.size();
+                }
+            }
+        }
+
+        double result = totalViews/totalNoPurchaseSessions;
+        System.out.println("Average Views Without Purchase: " + result);
+        System.out.println();
     }
 
     //write this after you have figured out how to store your data
