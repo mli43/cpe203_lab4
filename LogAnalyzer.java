@@ -96,7 +96,7 @@ public class LogAnalyzer
         {
             return;
         }
-        List<Buy> buys = buysFromSession.get(words[BUY_PRODUCT_ID]);
+        List<Buy> buys = buysFromSession.get(words[BUY_SESSION_ID]);
         if (buys == null){
             buys = new LinkedList<Buy>();
             buysFromSession.put(words[BUY_SESSION_ID], buys);
@@ -157,8 +157,6 @@ public class LogAnalyzer
             final Map<String, List<Buy>> buysFromSession)
     {
         int totalViews = 0;
-        int totalNoPurchaseSessions = 0;
-        List<String> customerList = new LinkedList<String>();
         double totalNoPurchaseSessions = 0.0;
 
         List<String> customerList = new LinkedList<String> (sessionsFromCustomer.keySet());
@@ -213,7 +211,7 @@ public class LogAnalyzer
             }
             double averagePrice = totalPrice / views.size();
             for (Buy buy: buys) {
-                result = Double.parseDouble(buy.getPrice() - averagePrice)
+                String result = String.valueOf(buy.getPrice() - averagePrice);
                 System.out.println("    " + buy.getProductId() + " " + result);
             }
             totalPrice = 0;
