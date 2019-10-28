@@ -225,8 +225,13 @@ public class LogAnalyzer
             final Map<String, List<View>> viewsFromSession,
             final Map<String, List<Buy>> buysFromSession)
     {
-        System.out.println("Number of Views for Purchased Product by Customer");
+        System.out.println("Number of Views for Purchased Product by Customer" );
 
+        List<String> customerList = new LinkedList<String> (sessionsFromCustomer.keySet());
+        for (String cust : customerList) {
+            List<String> sessionList = sessionsFromCustomer.get(cust);
+            
+        }
         /* add printing */
     }
 
