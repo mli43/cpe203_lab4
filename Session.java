@@ -4,15 +4,14 @@ import java.util.Map;
 
 class Session{
     private final String sessionId;
-    private List<Product> products;
-    private Map<Session, List<Product>> viewedProducts;
-    private Map<Session, List<Product>> boughtProducts;
+    private Map<Product, int> viewedProducts;
+    private Map<Product, int> boughtProducts;
 
-    public Session(String sessionId, List<Product> products){
+    public Session(String sessionId, Map<Product, int> viewdProducts, Map<Product, int> boughtProducts){
         this.sessionId = sessionId;
-        this.products = products;
         this.viewedProducts = new HashMap<>();
         this.boughtProducts = new HashMap<>();
     }
+
 
 }
