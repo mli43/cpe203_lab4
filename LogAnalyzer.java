@@ -33,7 +33,7 @@ public class LogAnalyzer
       //creates a map of sessions to customer ids
    private static void processStartEntry(
       final String[] words,
-      final Map<String, List<String>> sessionsFromCustomer)
+      final Map<String, List<String>> sessionsFromCustomer) // map< customer id, list(sessionid)>
    {
       if (words.length != START_NUM_FIELDS)
       {
@@ -43,7 +43,7 @@ public class LogAnalyzer
          //check if there already is a list entry in the map
          //for this customer, if not create one
       List<String> sessions = sessionsFromCustomer
-         .get(words[START_CUSTOMER_ID]);
+         .get(words[START_CUSTOMER_ID]); //list of sessions by customer id
       if (sessions == null)
       {
          sessions = new LinkedList<>();
@@ -68,9 +68,25 @@ public class LogAnalyzer
       //your data to represent a purchase in the map (not a list of strings)
    private static void processBuyEntry(
       final String[] words
+      final Map<String, List<Buy>> buysFromSession
       /* add parameters as needed */
       )
    {
+      if (words.length != BUY_NUM_FIELDS)
+      {
+         return;
+      }
+      List<Buy> = buysFromSession.get(words[BUY_PRODUCT_ID]);
+      if (buys == null){
+         buys = new LinkedList<(Buy)>;
+         buysFromSession.put(words[BUY_SESSION_ID], buys);
+      }
+
+      int productId = words[BUY_PRODUCT_ID];
+      int productPrice = Integer.parseInt(words[BUY_PRICE]);
+      int quantity = Integer.parseInt(words[BUY_QUANTITY]);
+
+      buys.add(new Buy(productId, productPrice, quantity));
    }
 
    private static void processEndEntry(final String[] words)
