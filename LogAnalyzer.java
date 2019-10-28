@@ -141,7 +141,33 @@ public class LogAnalyzer
       final Map<String, List<View>> viewsFromSession,
       final Map<String, List<Buy>> buysFromSession)
    {
-      System.out.println("Average Views Without Purchase: ");
+      int totalViews = 0;
+      int totalNoPurchaseSessions = 0;
+      List<String> customerList = new LinkList<String>();
+
+      for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet()) 
+      {
+         customerList.add(entry.getKey());
+      }
+
+      for(String sessionId : customerList)
+      {
+         List<Buy> buys = buysFromSession.get(sessionId);
+         if (buys == null) //if no purchase
+            {   
+               totalNoPurchaseSessions ++;
+               List<View> views = viewsFromSession.get(sessionId);
+               if (views != null) //if viewed
+               {
+                  totalViews += views.size();
+               }
+         }
+      }
+
+      
+      double result = totalViews/totalNoPurchaseSessions;
+      System.out.println("Average Views Without Purchase: " + result);
+      System.out.println();
    }
 
       //write this after you have figured out how to store your data
@@ -151,6 +177,7 @@ public class LogAnalyzer
       final Map<String, List<Buy>> buysFromSession)      
    {
       System.out.println("Price Difference for Purchased Product by Session");
+
 
       /* add printing */
    }
@@ -162,8 +189,13 @@ public class LogAnalyzer
       final Map<String, List<View>> viewsFromSession,
       final Map<String, List<Buy>> buysFromSession)
    {
+
       System.out.println("Number of Views for Purchased Product by Customer");
 
+      
+
+
+   
       /* add printing */
    }
 
