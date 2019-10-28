@@ -91,6 +91,7 @@ public class LogAnalyzer
       /* add parameters as needed */
       
    {
+      //first push
    }
 
    private static void processEndEntry(final String[] words)
