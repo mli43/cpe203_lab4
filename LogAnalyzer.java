@@ -57,18 +57,43 @@ public class LogAnalyzer
       //similar to processStartEntry, should store relevant view
       //data in a map - model on processStartEntry, but store
       //your data to represent a view in the map (not a list of strings)
-   private static void processViewEntry(final String[] words
+   private static void processViewEntry(final String[] words,
+      final Map<String, List<View>> viewsFromSession)
       /* add parameters as needed */
-      )
+   
    {
+      if (words.length != VIEW_NUM_FIELDS)
+      {
+         return;
+      }
+
+      List<View> views = viewsFromSession.get(words[VIEW_SESSION_ID]);
+      if (views == null)
+      {
+         views = new LinkedList<View>();
+         viewsFromSession.put(words[VIEW_SESSION_ID], views);
+      }
+
+      int productPrice = Integer.parseInt(words[VIEW_PRICE]);
+   
+      String productID = words[VIEW_PRODUCT_ID];
+   
+      View view = new View(productID, productPrice);
+   
+      views.add(view);
    }
 
       //similar to processStartEntry, should store relevant purchases
       //data in a map - model on processStartEntry, but store
       //your data to represent a purchase in the map (not a list of strings)
+<<<<<<< HEAD
    private static void processBuyEntry(
       final String[] words
       final Map<String, List<Buy>> buysFromSession
+=======
+   private static void processBuyEntry(final String[] words,
+      final Map<String, List<Buy>> buysFromSession)
+>>>>>>> 816a923084edbef03f25b6a3acca4f8653877d91
       /* add parameters as needed */
       )
    {
@@ -101,7 +126,9 @@ public class LogAnalyzer
       //to process the data using the methods you write above
    private static void processLine(
       final String line,
-      final Map<String, List<String>> sessionsFromCustomer
+      final Map<String, List<String>> sessionsFromCustomer,
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession
       /* add parameters as needed */
       )
    {
@@ -118,10 +145,10 @@ public class LogAnalyzer
             processStartEntry(words, sessionsFromCustomer);
             break;
          case VIEW_TAG:
-            processViewEntry(words /* add arguments as needed */ );
+            processViewEntry(words, viewsFromSession);
             break;
          case BUY_TAG:
-            processBuyEntry(words /* add arguments as needed */ );
+            processBuyEntry(words, buysFromSession);
             break;
          case END_TAG:
             processEndEntry(words /* add arguments as needed */ );
@@ -200,13 +227,15 @@ public class LogAnalyzer
       //called in populateDataStructures
    private static void processFile(
       final Scanner input,
-      final Map<String, List<String>> sessionsFromCustomer
+      final Map<String, List<String>> sessionsFromCustomer,
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession
       /* add parameters as needed */
       )
    {
       while (input.hasNextLine())
       {
-         processLine(input.nextLine(), sessionsFromCustomer
+         processLine(input.nextLine(), sessionsFromCustomer, sessionsFromCustomer, viewsFromSession, buysFromSession
             /* add arguments as needed */ );
       }
    }
@@ -214,14 +243,16 @@ public class LogAnalyzer
       //called from main - mostly just pass through important data structures
    private static void populateDataStructures(
       final String filename,
-      final Map<String, List<String>> sessionsFromCustomer
+      final Map<String, List<String>> sessionsFromCustomer,
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession
       /* add parameters as needed */
       )
       throws FileNotFoundException
    {
       try (Scanner input = new Scanner(new File(filename)))
       {
-         processFile(input, sessionsFromCustomer
+         processFile(input, sessionsFromCustomer, sessionsFromCustomer, viewsFromSession, buysFromSession
             /* add arguments as needed */ );
       }
    }
@@ -243,7 +274,8 @@ public class LogAnalyzer
        * that customer.
        */
       final Map<String, List<String>> sessionsFromCustomer = new HashMap<>();
-
+      final Map<String, List<View>> viewsFromSession = new HashMap<>();
+      final Map<String, List<Buy>> buysFromSession = new HashMap<>();
       /* create additional data structures to hold relevant information */
       /* they will most likely be maps to important data in the logs */
 
@@ -251,10 +283,10 @@ public class LogAnalyzer
 
       try
       {
-         populateDataStructures(filename, sessionsFromCustomer
+         populateDataStructures(filename, sessionsFromCustomer, viewFromSession, buysFromSession
             /* add parameters as needed */
             );
-         printStatistics(
+         printStatistics(sessionsFromCustomer, viewFromSession, buysFromSession
             /* add parameters as needed */
             );
       }
