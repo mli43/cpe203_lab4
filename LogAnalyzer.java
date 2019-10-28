@@ -158,14 +158,13 @@ public class LogAnalyzer
     {
         int totalViews = 0;
         double totalNoPurchaseSessions = 0.0;
-        List<String> customerList = new LinkedList<String>();
 
-        for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet())
-        {
-            customerList.add(entry.getKey());
+        List<String> customerList = new LinkedList<String> (sessionsFromCustomer.keySet());
+        for (String cust : customerList) {
+            List<String> sessionList = sessionsFromCustomer.get(cust);
         
 
-            for(String sessionId : customerList)
+            for(String sessionId : sessionList)
             {
                 List<Buy> buys = buysFromSession.get(sessionId);
                 if (buys == null) //if no purchase
