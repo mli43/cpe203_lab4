@@ -210,7 +210,7 @@ public class LogAnalyzer
             }
             double averagePrice = totalPrice / views.size();
             for (Buy buy: buys) {
-                System.out.println("    " + buy.getProductId() + " " + buy.getPrice() - averagePrice);
+                System.out.println("    " + buy.getProductId() + " " + (buy.getPrice() - averagePrice));
             }
             totalPrice = 0;
         }
@@ -289,7 +289,7 @@ public class LogAnalyzer
     {
         while (input.hasNextLine())
         {
-            processLine(input.nextLine(), sessionsFromCustomer, sessionsFromCustomer, viewsFromSession, buysFromSession
+            processLine(input.nextLine(), sessionsFromCustomer, viewsFromSession, buysFromSession
                     /* add arguments as needed */ );
         }
     }
