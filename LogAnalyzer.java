@@ -87,7 +87,7 @@ public class LogAnalyzer
     //data in a map - model on processStartEntry, but store
     //your data to represent a purchase in the map (not a list of strings)
     private static void processBuyEntry(
-            final String[] words
+            final String[] words,
             final Map<String, List<Buy>> buysFromSession
     /* add parameters as needed */
       )
@@ -96,9 +96,9 @@ public class LogAnalyzer
         {
             return;
         }
-        List<Buy> = buysFromSession.get(words[BUY_PRODUCT_ID]);
+        List<Buy> buys = buysFromSession.get(words[BUY_PRODUCT_ID]);
         if (buys == null){
-            buys = new LinkedList<(Buy)>;
+            buys = new LinkedList<Buy>();
             buysFromSession.put(words[BUY_SESSION_ID], buys);
         }
 
@@ -199,7 +199,7 @@ public class LogAnalyzer
         double totalPrice = 0;
 
         for (Map.Entry<String, List<Buy>> entry: buysFromSession.entrySet()){
-            String sessionId = entry.getKey() //sessionId of map of buys
+            String sessionId = entry.getKey(); //sessionId of map of buys
             List<Buy> buys = entry.getValue(); //list of buys of single session
 
             System.out.println(sessionId); //print out sessionId
