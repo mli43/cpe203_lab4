@@ -241,11 +241,12 @@ public class LogAnalyzer
                     for(Buy buys : buysFromSession.get(sessionId)){
                         int totalViews = 0;
                         for (String sessionId2 : sessionList){
-                            for (View views : viewsFromSession.get(sessionId2))
-                            {
-                                if (views.getProductId().equals(buys.getProductId())){
-                                    totalViews ++;
-                                    break;
+                            if (viewsFromSession.get(sessionId2) != null) {
+                                for (View views : viewsFromSession.get(sessionId2)) {
+                                    if (views.getProductId().equals(buys.getProductId())) {
+                                        totalViews++;
+                                        break;
+                                    }
                                 }
                             }
                         }
