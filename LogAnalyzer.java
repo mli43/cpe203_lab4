@@ -159,26 +159,28 @@ public class LogAnalyzer
         int totalViews = 0;
         int totalNoPurchaseSessions = 0;
         List<String> customerList = new LinkedList<String>();
+        double totalNoPurchaseSessions = 0.0;
 
-        for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet())
-        {
-            customerList.add(entry.getKey());
-        }
+        List<String> customerList = new LinkedList<String> (sessionsFromCustomer.keySet());
+        for (String cust : customerList) {
+            List<String> sessionList = sessionsFromCustomer.get(cust);
+        
 
-        for(String sessionId : customerList)
-        {
-            List<Buy> buys = buysFromSession.get(sessionId);
-            if (buys == null) //if no purchase
+            for(String sessionId : sessionList)
             {
-                totalNoPurchaseSessions ++;
-                List<View> views = viewsFromSession.get(sessionId);
-                if (views != null) //if viewed
+                List<Buy> buys = buysFromSession.get(sessionId);
+                if (buys == null) //if no purchase
                 {
-                    totalViews += views.size();
+                    totalNoPurchaseSessions ++;
+                    List<View> views = viewsFromSession.get(sessionId);
+                    if (views != null) //if viewed
+                    {
+                        totalViews += views.size();
+                    }
                 }
+               
             }
         }
-
         double result = totalViews/totalNoPurchaseSessions;
         System.out.println("Average Views Without Purchase: " + result);
         System.out.println();
@@ -212,6 +214,7 @@ public class LogAnalyzer
             for (Buy buy: buys) {
                 result = Double.parseDouble(buy.getPrice() - averagePrice)
                 System.out.println("    " + buy.getProductId() + " " + result);
+                System.out.println("    " + buy.getProductId() + " " + (buy.getPrice() - averagePrice));
             }
             totalPrice = 0;
         }
