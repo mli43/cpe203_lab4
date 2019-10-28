@@ -169,7 +169,7 @@ public class LogAnalyzer
 
       final Map<String, List<String>> sessionsFromCustomer,
       final Map<String, List<View>> viewsFromSession,
-      final Map<String, List<Buy>> buysFromSession)
+      final Map<String, List<Buy>> buysFromSession
 
       /* add parameters as needed */
       )
