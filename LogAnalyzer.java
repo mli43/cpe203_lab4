@@ -203,7 +203,7 @@ public class LogAnalyzer
         for (Map.Entry<String, List<Buy>> entry: buysFromSession.entrySet()){
             String sessionId = entry.getKey(); //sessionId of map of buys
             List<Buy> buys = entry.getValue(); //list of buys of single session
-            System.out.println("length of buy list in " + sessionId+ " is " + buys.size())
+            System.out.println("length of buy list in " + sessionId+ " is " + buys.size());
 
             System.out.println(sessionId); //print out sessionId
             List<View> views = viewsFromSession.get(sessionId); //views of the sessionId
