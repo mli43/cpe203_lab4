@@ -306,7 +306,7 @@ public class LogAnalyzer
     {
         try (Scanner input = new Scanner(new File(filename)))
         {
-            processFile(input, sessionsFromCustomer, sessionsFromCustomer, viewsFromSession, buysFromSession
+            processFile(input, sessionsFromCustomer, viewsFromSession, buysFromSession
                     /* add arguments as needed */ );
         }
     }
@@ -337,10 +337,10 @@ public class LogAnalyzer
 
         try
         {
-            populateDataStructures(filename, sessionsFromCustomer, viewFromSession, buysFromSession
+            populateDataStructures(filename, sessionsFromCustomer, viewsFromSession, buysFromSession
                     /* add parameters as needed */
             );
-            printStatistics(sessionsFromCustomer, viewFromSession, buysFromSession
+            printStatistics(sessionsFromCustomer, viewsFromSession, buysFromSession
                     /* add parameters as needed */
             );
         }
