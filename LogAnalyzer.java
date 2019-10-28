@@ -130,11 +130,15 @@ public class LogAnalyzer
             processBuyEntry(words, buysFromSession);
             break;
          case END_TAG:
-            processEndEntry(words /* add arguments as needed */ );
+            processEndEntry(words);
             break;
       }
    }
 
+   private static void AvgViewsNoPurchase()
+   {
+      System.out.println("Average Views Without Purchase: ")
+   }
       //write this after you have figured out how to store your data
       //make sure that you understand the problem
    private static void printSessionPriceDifference(
@@ -160,6 +164,10 @@ public class LogAnalyzer
       //write this after you have figured out how to store your data
       //make sure that you understand the problem
    private static void printStatistics(
+      final Map<String, List<String>> sessionsFromCustomer,
+      final Map<String, List<View>> viewsFromSession,
+      final Map<String, List<Buy>> buysFromSession
+
       /* add parameters as needed */
       )
    {
