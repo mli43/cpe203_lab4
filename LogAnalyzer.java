@@ -96,7 +96,7 @@ public class LogAnalyzer
         {
             return;
         }
-        List<Buy> buys = buysFromSession.get(words[BUY_PRODUCT_ID]);
+        List<Buy> buys = buysFromSession.get(words[BUY_SESSION_ID]);
         if (buys == null){
             buys = new LinkedList<Buy>();
             buysFromSession.put(words[BUY_SESSION_ID], buys);
