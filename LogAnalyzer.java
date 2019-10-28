@@ -157,7 +157,7 @@ public class LogAnalyzer
             final Map<String, List<Buy>> buysFromSession)
     {
         int totalViews = 0;
-        int totalNoPurchaseSessions = 0;
+        double totalNoPurchaseSessions = 0.0;
         List<String> customerList = new LinkedList<String>();
 
         for(Map.Entry<String, List<String>> entry: sessionsFromCustomer.entrySet())
