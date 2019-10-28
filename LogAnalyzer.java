@@ -102,7 +102,7 @@ public class LogAnalyzer
             buysFromSession.put(words[BUY_SESSION_ID], buys);
         }
 
-        int productId = words[BUY_PRODUCT_ID];
+        String productId = words[BUY_PRODUCT_ID];
         int productPrice = Integer.parseInt(words[BUY_PRICE]);
         int quantity = Integer.parseInt(words[BUY_QUANTITY]);
 
