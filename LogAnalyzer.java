@@ -87,6 +87,7 @@ public class LogAnalyzer
       int quantity = Integer.parseInt(words[BUY_QUANTITY]);
 
       buys.add(new Buy(productId, productPrice, quantity));
+
    }
 
    private static void processEndEntry(final String[] words)
