@@ -4,12 +4,14 @@ import java.util.LinkedList;
 
 public class Buy{
     private String sessionId;
-    private Map<String, int> products;
+    private String productId;
+    private double price;
     private int quantity;
 
-    public Buy(String sessionId, Map<String, int> products, int quantity){
+    public Buy(String sessionId, String productId, int price, int quantity){
         this.sessionId = sessionId;
-        this.products = products;
+        this.productId = productId;
+        this.price = price;
         this.quantity = quantity;
     }
 
@@ -17,8 +19,12 @@ public class Buy{
         return sessionId;
     }
 
-    public Map<String, int> getProducts() {
-        return products;
+    public String getProductId() {
+        return productId;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public int getQuantity() {
