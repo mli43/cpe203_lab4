@@ -226,12 +226,36 @@ public class LogAnalyzer
             final Map<String, List<View>> viewsFromSession,
             final Map<String, List<Buy>> buysFromSession)
     {
+        System.out.println();
         System.out.println("Number of Views for Purchased Product by Customer" );
 
         List<String> customerList = new LinkedList<String> (sessionsFromCustomer.keySet());
         for (String cust : customerList) {
+            String customerId = cust;
             List<String> sessionList = sessionsFromCustomer.get(cust);
-            
+            for (String sessionId : sessionList)
+            {
+                if (buysFromSession.get(sessionId) != null)
+                {
+                    System.out.println(customerId);
+                    for(Buy buys : buysFromSession.get(sessionId)){
+                        int totalViews = 0;
+                        for (String sessionId2 : sessionList){
+                            for (View views : viewsFromSession.get(sessionId2))
+                            {
+                                if (views.getProductId().equals(buys.getProductId())){
+                                    totalViews ++;
+                                    break;
+                                }
+                            }
+                        }
+                        System.out.println("     " + buys.getProductId() + " " + totalViews);
+                        totalViews = 0;
+                    }
+                    System.out.println();
+                }
+
+            }
         }
         /* add printing */
     }
